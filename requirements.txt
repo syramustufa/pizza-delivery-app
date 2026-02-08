@@ -1,3 +1,20 @@
 fastapi
 uvicorn
 jinja2
+async function orderPizza(name) {
+  let qty = prompt("Quantity?");
+  await fetch("/order", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name: name, qty: Number(qty)})
+  });
+  location.reload();
+}
+
+async function deletePizza(name) {
+  await fetch(`/pizza/${name}`, { method: "DELETE" });
+  location.reload();
+}
+fastapi
+uvicorn
+jinja2

@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
+<body>
+<h2>Login</h2>
+<form method="post" action="/login">
+  <input name="username" placeholder="username">
+  <input name="password" placeholder="password" type="password">
+  <button>Login</button>
+</form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Pizza Delivery App</title>
-    <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js"></script>
 </head>
 <body>
 
@@ -10,20 +20,28 @@
 
 <h2>Add Pizza</h2>
 <form action="/pizza" method="post">
-    <input type="text" name="name" placeholder="Pizza Name" required>
-    <input type="text" name="desc" placeholder="Description" required>
-    <button type="submit">Add Pizza</button>
+  <input name="name" placeholder="Pizza name" required>
+  <input name="price" type="number" placeholder="Price" required>
+  <input name="quantity" type="number" placeholder="Quantity" required>
+  <button>Add</button>
 </form>
 
-<h2>Available Pizzas</h2>
+<h2>Menu</h2>
 <ul>
-    {% for name, desc in pizzas.items() %}
-        <li>
-            <strong>{{ name }}</strong> – {{ desc }}
-        </li>
-    {% else %}
-        <li>No pizzas available</li>
-    {% endfor %}
+{% for name, p in pizzas.items() %}
+  <li>
+    {{ name }} — ${{ p.price }} — Qty: {{ p.quantity }}
+    <button onclick="orderPizza('{{ name }}')">Order</button>
+    <button onclick="deletePizza('{{ name }}')">Delete</button>
+  </li>
+{% endfor %}
+</ul>
+
+<h2>Orders</h2>
+<ul>
+{% for o in orders %}
+  <li>{{ o.pizza }} x {{ o.qty }}</li>
+{% endfor %}
 </ul>
 
 </body>
