@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizza Delivery App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>🍕 Pizza Delivery App</h1>
+
+<h2>Add Pizza</h2>
+<form action="/pizza" method="post">
+    <input type="text" name="name" placeholder="Pizza Name" required>
+    <input type="text" name="desc" placeholder="Description" required>
+    <button type="submit">Add Pizza</button>
+</form>
+
+<h2>Available Pizzas</h2>
+<ul>
+    {% for name, desc in pizzas.items() %}
+        <li>
+            <strong>{{ name }}</strong> – {{ desc }}
+        </li>
+    {% else %}
+        <li>No pizzas available</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
